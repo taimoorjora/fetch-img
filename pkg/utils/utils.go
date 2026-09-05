@@ -7,6 +7,12 @@ import (
 
 // SanitizeFilename removes invalid characters from filename
 func SanitizeFilename(filename string) string {
+	// Replace spaces with underscores
+	filename = strings.ReplaceAll(filename, " ", "_")
+
+	// Replace single quotes with two single quotes
+	filename = strings.ReplaceAll(filename, "'", "")
+
 	// Remove invalid characters
 	filename = strings.Map(func(r rune) rune {
 		if r < 32 || r == '\\' || r == '/' || r == ':' || r == '*' || r == '?' || r == '"' || r == '<' || r == '>' || r == '|' {
